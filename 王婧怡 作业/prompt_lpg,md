@@ -1,0 +1,19 @@
+fix: 修复八皇后剪枝条件Bug，通过单元测试
+# AI 交互日志
+
+## 1. 需求描述
+我需要实现一个八皇后问题的求解器，使用回溯法，包含 `src/`（主逻辑）和 `tests/`（单元测试）目录，验证 N=4、N=8 的解数，并故意引入 Bug 后让 AI 定位修复。
+
+## 2. 代码生成
+向 AI 提问：
+> 帮我用 Python 回溯法实现八皇后问题求解器，包含 `src/eight_queens.py` 和 `tests/test_queens.py`，验证 N=4（解数=2）和 N=8（解数=92）的正确性。
+
+AI 生成了核心回溯代码与单元测试脚本。
+
+## 3. Bug 引入
+为了测试“自主修复”环节，我故意修改了剪枝条件：
+```python
+# 原正确代码
+if col in cols or (row + col) in pie or (row - col) in na:
+# 改为 Bug 版
+if col in cols or (row + col) in pie or (row + col) in na:
